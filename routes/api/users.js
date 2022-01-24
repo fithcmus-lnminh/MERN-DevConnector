@@ -29,7 +29,9 @@ router.post(
 
       //Check if user exists
       if (user) {
-        res.status(400).json({ errors: [{ msg: "User already exists" }] });
+        return res
+          .status(400)
+          .json({ errors: [{ msg: "User already exists" }] });
       }
 
       //Get user gravatar (dummy avatar)
@@ -55,6 +57,7 @@ router.post(
         },
       };
 
+      //login after register
       jwt.sign(
         payload,
         config.get("jwtSecret"),
