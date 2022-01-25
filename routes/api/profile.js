@@ -94,4 +94,37 @@ router.post(
   }
 );
 
+//get all profiles
+router.get("/", async (req, res) => {
+  try {
+    const profiles = await Profile.find().populate("user", ["name", "avatar"]);
+    res.json(profiles);
+  } catch (err) {
+    console.log(err.message);
+    res.json(500).send("Server Error");
+  }
+});
+
+//get profile by userId
+router.get("/user/:userId", async (req, res) => {
+  try {
+    const profile = await Profile.findOne({ user: req.params.userId }).populate(
+      "user",
+      ["name", "avatar"]
+    );
+
+    console.log(profile);
+    if (!profile)
+      return res.status(400).json({ msg: "There is no profile for this user" });
+
+    res.json(profile);
+  } catch (err) {
+    console.log(err.message);
+    if (err.kind == "ObjectId") {
+      return res.status(400).json({ msg: "Profile not found" });
+    }
+    res.json(500).send("Server Error");
+  }
+});
+
 module.exports = router;
