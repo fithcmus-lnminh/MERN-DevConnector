@@ -2,8 +2,7 @@ const router = require("express").Router();
 const auth = require("../../middleware/auth");
 const Profile = require("../../models/Profile");
 const { check, validationResult } = require("express-validator");
-const res = require("express/lib/response");
-const { compare } = require("bcryptjs");
+const User = require("../../models/User");
 
 router.get("/me", auth, async (req, res) => {
   try {
@@ -124,6 +123,21 @@ router.get("/user/:userId", async (req, res) => {
       return res.status(400).json({ msg: "Profile not found" });
     }
     res.json(500).send("Server Error");
+  }
+});
+
+//delete profile
+router.delete("/", auth, async (req, res) => {
+  try {
+    //delete profile
+    await Profile.findOneAndRemove({ user: req.user.id });
+    //delete user
+    await User.findOneAndRemove({ _id: req.user.id });
+
+    res.json({ msg: "User deleted" });
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).send("Server Error");
   }
 });
 
