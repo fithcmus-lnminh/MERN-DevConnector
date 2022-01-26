@@ -1,4 +1,6 @@
 {
     "mongoURI": "mongodb+srv://minhle:minh15102001@cluster0.nimrl.mongodb.net/DevConnector?retryWrites=true&w=majority"
-    ,"jwtSecret": "mysecrettoken"
+    ,"jwtSecret": "mysecrettoken",
+    "githubClientId": "b1b469073b0b52ffae0a",
+    "githubSecret": "7934fd056171f5e6691572631a7db18956c6818e"
 }
