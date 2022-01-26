@@ -281,6 +281,7 @@ router.get("/github/:username", (req, res) => {
       headers: { "user-agent": "node.js" },
     };
 
+    //send HTTP request to github api
     request(options, (err, response, body) => {
       if (err) console.error(error);
 
