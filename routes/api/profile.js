@@ -3,6 +3,7 @@ const auth = require("../../middleware/auth");
 const Profile = require("../../models/Profile");
 const { check, validationResult } = require("express-validator");
 const User = require("../../models/User");
+const { remove } = require("../../models/Profile");
 
 router.get("/me", auth, async (req, res) => {
   try {
@@ -177,5 +178,26 @@ router.put(
     }
   }
 );
+
+//delete experience
+router.delete("/experience/:expId", auth, async (req, res) => {
+  try {
+    const profile = await Profile.findOne({ user: req.user.id });
+
+    //Get remove index
+    const removeIndex = profile.experience
+      .map((e) => e.id)
+      .indexOf(req.params.expId);
+
+    profile.experience.splice(removeIndex, 1); //delete
+
+    await profile.save();
+
+    res.json(profile);
+  } catch {
+    console.log(err);
+    res.status(500).send("Server error");
+  }
+});
 
 module.exports = router;
