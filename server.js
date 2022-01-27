@@ -1,9 +1,8 @@
 const express = require("express");
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 const connectDB = require("./config/db");
 
-app.get("/", (req, res) => res.send("Hello World!"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.listen(port, () =>
