@@ -36,12 +36,12 @@ const PostSchema = new Schema({
         type: String,
       },
       avatar: String,
-      date: {
-        type: String,
-        default: Date.now,
-      },
     },
   ],
+  date: {
+    type: String,
+    default: Date.now,
+  },
 });
 
 module.exports = mongoose.model("post", PostSchema);
