@@ -11,10 +11,10 @@ const Landing = () => {
             other developers
           </p>
           <div class="buttons">
-            <a href="register.html" class="btn btn-primary">
+            <a href="/register" class="btn btn-primary">
               Sign Up
             </a>
-            <a href="login.html" class="btn btn-light">
+            <a href="/login" class="btn btn-light">
               Login
             </a>
           </div>
