@@ -18,29 +18,7 @@ const Register = () => {
     e.preventDefault();
     if (password !== password2) console.log("Password does not match!");
     else {
-      const newUser = {
-        name,
-        email,
-        password,
-      };
-      try {
-        const config = {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        };
-
-        const body = JSON.stringify(newUser);
-
-        const res = await axios.post(
-          "http://localhost:5000/api/users",
-          body,
-          config
-        ); //api for register user
-        console.log(res);
-      } catch (err) {
-        console.log(err.response.data);
-      }
+      console.log("SUCCESS");
     }
   };
 
